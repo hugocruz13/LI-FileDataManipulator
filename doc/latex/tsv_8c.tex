@@ -1,0 +1,684 @@
+\hypertarget{tsv_8c}{}\doxysection{/home/hugoc/d-\/30-\/1/src/tsv.c File Reference}
+\label{tsv_8c}\index{/home/hugoc/d-\/30-\/1/src/tsv.c@{/home/hugoc/d-\/30-\/1/src/tsv.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}struct.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tsv.\+h\char`\"{}}\newline
+Include dependency graph for tsv.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=298pt]{tsv_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{tsv_8c_a55bd1f0872ab6818355d2ccdf4df5e05}{ficheiro\+\_\+tsv\+\_\+1}} (char $\ast$arquivo, \mbox{\hyperlink{structDados}{Dados}} $\ast$dados)
+\begin{DoxyCompactList}\small\item\em Lê dados de um arquivo T\+SV e bin e armazena os na struct \mbox{\hyperlink{structDados}{Dados}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tsv_8c_a851dfba5fdb5a881c0fc6733f9bc4ed3}{ficheiro\+\_\+tsv\+\_\+2}} (char $\ast$arquivo, \mbox{\hyperlink{structDieta}{Dieta}} $\ast$dieta)
+\begin{DoxyCompactList}\small\item\em Lê dados de um arquivo T\+SV (tab-\/separated values) e .bin e armazena os na estrutura \mbox{\hyperlink{structDieta}{Dieta}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tsv_8c_a59d620ebbc0688f96c7aa4343ddaf767}{ficheiro\+\_\+tsv\+\_\+3}} (char $\ast$arquivo, \mbox{\hyperlink{structPlano}{Plano}} $\ast$plano)
+\begin{DoxyCompactList}\small\item\em Lê dados de um arquivo T\+SV (tab-\/separated values) e .bin e armazena os na estrutura \mbox{\hyperlink{structPlano}{Plano}}. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tsv_8c_a527d0a237ca41559e52648b3c47e7f8f}{listar\+\_\+plano\+\_\+tsv}} (\mbox{\hyperlink{structPlano}{Plano}} $\ast$plano, int diainicio, int diafim, int mesinicio, int mesfim)
+\begin{DoxyCompactList}\small\item\em Está função é responsável por listar um cliente existente no plano, a escolha do utilizador para ficheiros T\+SV. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tsv_8c_a1d9b4269f3a67b18307f05bed94dd2fd}{calcmedia\+\_\+tsv}} (\mbox{\hyperlink{structDados}{Dados}} $\ast$dados, \mbox{\hyperlink{structDieta}{Dieta}} $\ast$dieta, int diainicio, int mesinicio, int diafim, int mesfim)
+\begin{DoxyCompactList}\small\item\em Calcula a média de calorias consumidas por cliente num período de tempo para ficheiros T\+SV. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{tsv_8c_a0b50c489e21037ad51ee9cd4c9610246}{tabela\+\_\+tsv}} (\mbox{\hyperlink{structDados}{Dados}} $\ast$dados, \mbox{\hyperlink{structDieta}{Dieta}} $\ast$dieta, \mbox{\hyperlink{structPlano}{Plano}} $\ast$plano)
+\begin{DoxyCompactList}\small\item\em Tabela com todas as informações do plano nutricional para ficheiros T\+SV. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{tsv_8c_a1d9b4269f3a67b18307f05bed94dd2fd}\label{tsv_8c_a1d9b4269f3a67b18307f05bed94dd2fd}} 
+\index{tsv.c@{tsv.c}!calcmedia\_tsv@{calcmedia\_tsv}}
+\index{calcmedia\_tsv@{calcmedia\_tsv}!tsv.c@{tsv.c}}
+\doxysubsubsection{\texorpdfstring{calcmedia\_tsv()}{calcmedia\_tsv()}}
+{\footnotesize\ttfamily void calcmedia\+\_\+tsv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDados}{Dados}} $\ast$}]{dados,  }\item[{\mbox{\hyperlink{structDieta}{Dieta}} $\ast$}]{dieta,  }\item[{int}]{diainicio,  }\item[{int}]{mesinicio,  }\item[{int}]{diafim,  }\item[{int}]{mesfim }\end{DoxyParamCaption})}
+
+
+
+Calcula a média de calorias consumidas por cliente num período de tempo para ficheiros T\+SV. 
+
+Inicialmente, a mesma verifica se as datas estão dentro de intervalos válidos, restringindo assim alguns dos clientes, em seguida verifica o numero de cliente e a refeição, onde realiza a soma das calorias e a contagem de vezes que o cliente realizou a refeição. Por fim caso as calorias sejam diferentes de 0, realiza a média das calorias consumidas por cliente.
+
+
+\begin{DoxyParams}{Parameters}
+{\em plano} & Invocação da struct plano na função. \\
+\hline
+{\em diainicio} & Invocação do dia de início defenido. \\
+\hline
+{\em mesinicio} & Invocação do mes de início defenido. \\
+\hline
+{\em diafim} & Invocação do dia de fim defenido. \\
+\hline
+{\em mesfim} & Invocação do mes de fim defenido. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{309 \{}
+\DoxyCodeLine{310     \textcolor{keywordtype}{int} i = 0;                                                \textcolor{comment}{//**< Responsável por percorrer o array*/}}
+\DoxyCodeLine{311     \textcolor{keywordtype}{float} c1\_pequeno = 0, c1\_almoco = 0, c1\_jantar = 0;       \textcolor{comment}{//**< Armazena as contagens */}}
+\DoxyCodeLine{312     \textcolor{keywordtype}{float} cal\_pequeno1 = 0, cal\_almoco1 = 0, cal\_jantar1 = 0; \textcolor{comment}{//**< Armazena as calorias */}}
+\DoxyCodeLine{313 }
+\DoxyCodeLine{314     \textcolor{keywordtype}{float} c2\_pequeno = 0, c2\_almoco = 0, c2\_jantar = 0;       \textcolor{comment}{//**< Armazena as contagens */}}
+\DoxyCodeLine{315     \textcolor{keywordtype}{float} cal\_pequeno2 = 0, cal\_almoco2 = 0, cal\_jantar2 = 0; \textcolor{comment}{//**< Armazena as calorias */}}
+\DoxyCodeLine{316 }
+\DoxyCodeLine{317     \textcolor{keywordtype}{float} c3\_pequeno = 0, c3\_almoco = 0, c3\_jantar = 0;       \textcolor{comment}{//**< Armazena as contagens */}}
+\DoxyCodeLine{318     \textcolor{keywordtype}{float} cal\_pequeno3 = 0, cal\_almoco3 = 0, cal\_jantar3 = 0; \textcolor{comment}{//**< Armazena as calorias */}}
+\DoxyCodeLine{319 }
+\DoxyCodeLine{320     printf(\textcolor{stringliteral}{"\(\backslash\)nMédia de todos os clientes:\(\backslash\)n\(\backslash\)n"});}
+\DoxyCodeLine{321 }
+\DoxyCodeLine{322     \textcolor{keywordflow}{for} (i = 0; i < 6; i++)}
+\DoxyCodeLine{323     \{}
+\DoxyCodeLine{324         \textcolor{keywordflow}{if} ((mesinicio < dieta-\/>mes[i] \&\& dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i] < mesfim) || \textcolor{comment}{//**< Válida o período  */}}
+\DoxyCodeLine{325             (mesinicio == dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i] \&\& diainicio <= dieta-\/>dia[i] \&\& dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i] <= diafim) ||}
+\DoxyCodeLine{326             (mesfim == dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i] \&\& diainicio <= dieta-\/>dia[i] \&\& dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i] <= diafim))}
+\DoxyCodeLine{327         \{}
+\DoxyCodeLine{328             \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == 1) \textcolor{comment}{//**< Verifica o numero de cliente */}}
+\DoxyCodeLine{329 }
+\DoxyCodeLine{330             \{}
+\DoxyCodeLine{331                 \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"pequeno almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição  */}}
+\DoxyCodeLine{332                 \{}
+\DoxyCodeLine{333                     cal\_pequeno1 = cal\_pequeno1 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Acumula as calorias  */}}
+\DoxyCodeLine{334                     c1\_pequeno++;                                     \textcolor{comment}{//**< Contador  */}}
+\DoxyCodeLine{335                 \}}
+\DoxyCodeLine{336                 \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição  */}}
+\DoxyCodeLine{337                 \{}
+\DoxyCodeLine{338                     cal\_almoco1 = cal\_almoco1 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Acumula as calorias  */}}
+\DoxyCodeLine{339                     c1\_almoco++;                                    \textcolor{comment}{//**< Contador  */}}
+\DoxyCodeLine{340                 \}}
+\DoxyCodeLine{341                 \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"jantar"}) == 0) \textcolor{comment}{//**< Verifica a refeição  */}}
+\DoxyCodeLine{342                 \{}
+\DoxyCodeLine{343                     cal\_jantar1 = cal\_jantar1 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Acumula as calorias  */}}
+\DoxyCodeLine{344                     c1\_jantar++;                                    \textcolor{comment}{//**< Contador  */}}
+\DoxyCodeLine{345                 \}}
+\DoxyCodeLine{346             \}}
+\DoxyCodeLine{347 }
+\DoxyCodeLine{348             \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == 2) \textcolor{comment}{//**< Verifica o numero de cliente */}}
+\DoxyCodeLine{349             \{}
+\DoxyCodeLine{350                 \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"pequeno almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição  */}}
+\DoxyCodeLine{351                 \{}
+\DoxyCodeLine{352                     cal\_pequeno2 = cal\_pequeno2 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Acumula as calorias  */}}
+\DoxyCodeLine{353                     c2\_pequeno++;                                     \textcolor{comment}{//**< Contador  */}}
+\DoxyCodeLine{354                 \}}
+\DoxyCodeLine{355                 \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição  */}}
+\DoxyCodeLine{356                 \{}
+\DoxyCodeLine{357                     cal\_almoco2 = cal\_almoco2 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Acumula as calorias  */}}
+\DoxyCodeLine{358                     c2\_almoco++;                                    \textcolor{comment}{//**< Contador  */}}
+\DoxyCodeLine{359                 \}}
+\DoxyCodeLine{360                 \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"jantar"}) == 0) \textcolor{comment}{//**< Verifica a refeição  */}}
+\DoxyCodeLine{361                 \{}
+\DoxyCodeLine{362                     cal\_jantar2 = cal\_jantar2 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Acumula as calorias  */}}
+\DoxyCodeLine{363                     c2\_jantar++;                                    \textcolor{comment}{//**< Contador  */}}
+\DoxyCodeLine{364                 \}}
+\DoxyCodeLine{365             \}}
+\DoxyCodeLine{366 }
+\DoxyCodeLine{367             \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == 3) \textcolor{comment}{//**< Verifica o numero de cliente */}}
+\DoxyCodeLine{368             \{}
+\DoxyCodeLine{369                 \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"pequeno almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição  */}}
+\DoxyCodeLine{370                 \{}
+\DoxyCodeLine{371                     cal\_pequeno3 = cal\_pequeno3 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Acumula as calorias  */}}
+\DoxyCodeLine{372                     c3\_pequeno++;                                     \textcolor{comment}{//**< Contador  */}}
+\DoxyCodeLine{373                 \}}
+\DoxyCodeLine{374                 \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição  */}}
+\DoxyCodeLine{375                 \{}
+\DoxyCodeLine{376                     cal\_almoco3 = cal\_almoco3 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Acumula as calorias  */}}
+\DoxyCodeLine{377                     c3\_almoco++;                                    \textcolor{comment}{//**< Contador  */}}
+\DoxyCodeLine{378                 \}}
+\DoxyCodeLine{379                 \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"jantar"}) == 0) \textcolor{comment}{//**< Verifica a refeição  */}}
+\DoxyCodeLine{380                 \{}
+\DoxyCodeLine{381                     cal\_jantar3 = cal\_jantar3 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Acumula as calorias  */}}
+\DoxyCodeLine{382                     c3\_jantar++;                                    \textcolor{comment}{//**< Contador  */}}
+\DoxyCodeLine{383                 \}}
+\DoxyCodeLine{384             \}}
+\DoxyCodeLine{385         \}}
+\DoxyCodeLine{386     \}}
+\DoxyCodeLine{387 }
+\DoxyCodeLine{388     \textcolor{comment}{// Cliente 1}}
+\DoxyCodeLine{389     \textcolor{keywordflow}{if} (cal\_pequeno1 != 0) \textcolor{comment}{//**< Se as calorias forem diferentes de 0 entra no loop  */}}
+\DoxyCodeLine{390     \{}
+\DoxyCodeLine{391         \textcolor{keywordtype}{float} media\_cal\_pequeno1 = cal\_pequeno1 / c1\_pequeno;                                                   \textcolor{comment}{//**< Realiza a media   */}}
+\DoxyCodeLine{392         printf(\textcolor{stringliteral}{"\(\backslash\)tMédia das calorias consumidas pelo cliente 1 ao pequeno almoço: \%.2f\(\backslash\)n"}, media\_cal\_pequeno1); \textcolor{comment}{//**< Apresenta a media  */}}
+\DoxyCodeLine{393     \}}
+\DoxyCodeLine{394 }
+\DoxyCodeLine{395     \textcolor{keywordflow}{if} (cal\_almoco1 != 0) \textcolor{comment}{//**< Se as calorias forem diferentes de 0 entra no loop  */}}
+\DoxyCodeLine{396     \{}
+\DoxyCodeLine{397         \textcolor{keywordtype}{float} media\_cal\_almoco1 = cal\_almoco1 / c1\_almoco;                                             \textcolor{comment}{//**< Realiza a media   */}}
+\DoxyCodeLine{398         printf(\textcolor{stringliteral}{"\(\backslash\)tMédia das calorias consumidas pelo cliente 1 ao almoço: \%.2f\(\backslash\)n"}, media\_cal\_almoco1); \textcolor{comment}{//**< Apresenta a media  */}}
+\DoxyCodeLine{399     \}}
+\DoxyCodeLine{400 }
+\DoxyCodeLine{401     \textcolor{keywordflow}{if} (cal\_jantar1 != 0) \textcolor{comment}{//**< Se as calorias forem diferentes de 0 entra no loop  */}}
+\DoxyCodeLine{402     \{}
+\DoxyCodeLine{403         \textcolor{keywordtype}{float} media\_cal\_jantar1 = cal\_jantar1 / c1\_jantar;                                             \textcolor{comment}{//**< Realiza a media   */}}
+\DoxyCodeLine{404         printf(\textcolor{stringliteral}{"\(\backslash\)tMédia das calorias consumidas pelo cliente 1 ao jantar: \%.2f\(\backslash\)n"}, media\_cal\_jantar1); \textcolor{comment}{//**< Apresenta a media  */}}
+\DoxyCodeLine{405     \}}
+\DoxyCodeLine{406 }
+\DoxyCodeLine{407     \textcolor{comment}{// Cliente 2}}
+\DoxyCodeLine{408     \textcolor{keywordflow}{if} (cal\_pequeno2 != 0) \textcolor{comment}{//**< Se as calorias forem diferentes de 0 entra no loop  */}}
+\DoxyCodeLine{409     \{}
+\DoxyCodeLine{410         \textcolor{keywordtype}{float} media\_cal\_pequeno2 = cal\_pequeno2 / c2\_pequeno;                                                   \textcolor{comment}{//**< Realiza a media   */}}
+\DoxyCodeLine{411         printf(\textcolor{stringliteral}{"\(\backslash\)tMédia das calorias consumidas pelo cliente 2 ao pequeno almoço: \%.2f\(\backslash\)n"}, media\_cal\_pequeno2); \textcolor{comment}{//**< Apresenta a media  */}}
+\DoxyCodeLine{412     \}}
+\DoxyCodeLine{413 }
+\DoxyCodeLine{414     \textcolor{keywordflow}{if} (cal\_almoco2 != 0) \textcolor{comment}{//**< Se as calorias forem diferentes de 0 entra no loop  */}}
+\DoxyCodeLine{415     \{}
+\DoxyCodeLine{416         \textcolor{keywordtype}{float} media\_cal\_almoco2 = cal\_almoco2 / c2\_almoco;                                             \textcolor{comment}{//**< Realiza a media   */}}
+\DoxyCodeLine{417         printf(\textcolor{stringliteral}{"\(\backslash\)tMédia das calorias consumidas pelo cliente 2 ao almoço: \%.2f\(\backslash\)n"}, media\_cal\_almoco2); \textcolor{comment}{//**< Apresenta a media  */}}
+\DoxyCodeLine{418     \}}
+\DoxyCodeLine{419 }
+\DoxyCodeLine{420     \textcolor{keywordflow}{if} (cal\_jantar2 != 0) \textcolor{comment}{//**< Se as calorias forem diferentes de 0 entra no loop  */}}
+\DoxyCodeLine{421     \{}
+\DoxyCodeLine{422         \textcolor{keywordtype}{float} media\_cal\_jantar2 = cal\_jantar2 / c2\_jantar;                                             \textcolor{comment}{//**< Realiza a media   */}}
+\DoxyCodeLine{423         printf(\textcolor{stringliteral}{"\(\backslash\)tMédia das calorias consumidas pelo cliente 2 ao jantar: \%.2f\(\backslash\)n"}, media\_cal\_jantar2); \textcolor{comment}{//**< Apresenta a media  */}}
+\DoxyCodeLine{424     \}}
+\DoxyCodeLine{425 }
+\DoxyCodeLine{426     \textcolor{comment}{// Cliente 3}}
+\DoxyCodeLine{427     \textcolor{keywordflow}{if} (cal\_pequeno3 != 0) \textcolor{comment}{//**< Se as calorias forem diferentes de 0 entra no loop  */}}
+\DoxyCodeLine{428     \{}
+\DoxyCodeLine{429         \textcolor{keywordtype}{float} media\_cal\_pequeno3 = cal\_pequeno3 / c3\_pequeno;                                                   \textcolor{comment}{//**< Realiza a media   */}}
+\DoxyCodeLine{430         printf(\textcolor{stringliteral}{"\(\backslash\)tMédia das calorias consumidas pelo cliente 3 ao pequeno almoço: \%.2f\(\backslash\)n"}, media\_cal\_pequeno3); \textcolor{comment}{//**< Apresenta a media  */}}
+\DoxyCodeLine{431     \}}
+\DoxyCodeLine{432 }
+\DoxyCodeLine{433     \textcolor{keywordflow}{if} (cal\_almoco3 != 0) \textcolor{comment}{//**< Se as calorias forem diferentes de 0 entra no loop  */}}
+\DoxyCodeLine{434     \{}
+\DoxyCodeLine{435         \textcolor{keywordtype}{float} media\_cal\_almoco3 = cal\_almoco3 / c3\_almoco;                                             \textcolor{comment}{//**< Realiza a media   */}}
+\DoxyCodeLine{436         printf(\textcolor{stringliteral}{"\(\backslash\)tMédia das calorias consumidas pelo cliente 3 ao almoço: \%.2f\(\backslash\)n"}, media\_cal\_almoco3); \textcolor{comment}{//**< Apresenta a media  */}}
+\DoxyCodeLine{437     \}}
+\DoxyCodeLine{438 }
+\DoxyCodeLine{439     \textcolor{keywordflow}{if} (cal\_jantar3 != 0) \textcolor{comment}{//**< Se as calorias forem diferentes de 0 entra no loop  */}}
+\DoxyCodeLine{440     \{}
+\DoxyCodeLine{441         \textcolor{keywordtype}{float} media\_cal\_jantar3 = cal\_jantar3 / c3\_jantar;                                             \textcolor{comment}{//**< Realiza a media   */}}
+\DoxyCodeLine{442         printf(\textcolor{stringliteral}{"\(\backslash\)tMédia das calorias consumidas pelo cliente 3 ao jantar: \%.2f\(\backslash\)n"}, media\_cal\_jantar3); \textcolor{comment}{//**< Apresenta a media  */}}
+\DoxyCodeLine{443     \}}
+\DoxyCodeLine{444 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tsv_8c_a55bd1f0872ab6818355d2ccdf4df5e05}\label{tsv_8c_a55bd1f0872ab6818355d2ccdf4df5e05}} 
+\index{tsv.c@{tsv.c}!ficheiro\_tsv\_1@{ficheiro\_tsv\_1}}
+\index{ficheiro\_tsv\_1@{ficheiro\_tsv\_1}!tsv.c@{tsv.c}}
+\doxysubsubsection{\texorpdfstring{ficheiro\_tsv\_1()}{ficheiro\_tsv\_1()}}
+{\footnotesize\ttfamily void ficheiro\+\_\+tsv\+\_\+1 (\begin{DoxyParamCaption}\item[{char $\ast$}]{arquivo,  }\item[{\mbox{\hyperlink{structDados}{Dados}} $\ast$}]{dados }\end{DoxyParamCaption})}
+
+
+
+Lê dados de um arquivo T\+SV e bin e armazena os na struct \mbox{\hyperlink{structDados}{Dados}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arquivo} & Nome do arquivo T\+SV a ser lido na função. \\
+\hline
+{\em dados} & Invocação da struct dados na função. \\
+\hline
+\end{DoxyParams}
+Criação de um ciclo while para ler os dados do arquivo T\+SV e armazená-\/los na estrutura \mbox{\hyperlink{structDados}{Dados}}.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ficheiro} & Nome do arquivo T\+SV a ser lido na função. \\
+\hline
+{\em dados} & Invocação da struct dados na função. \\
+\hline
+{\em i} & Variável para percorrer o array.\\
+\hline
+\end{DoxyParams}
+For\+: vai realizar a leitura dos dados do arquivo binário e armazená-\/los na struct \mbox{\hyperlink{structDados}{Dados}}.
+
+For\+: Apresenta os dados armazenados na struct \mbox{\hyperlink{structDados}{Dados}}.
+\begin{DoxyCode}{0}
+\DoxyCodeLine{19 \{}
+\DoxyCodeLine{20     \textcolor{keywordflow}{if} (strcmp(arquivo, \textcolor{stringliteral}{"dados.tsv"}) == 0) \textcolor{comment}{//**< Compara as strings, caso sejam iguais entra neste loop */}}
+\DoxyCodeLine{21     \{}
+\DoxyCodeLine{22         FILE *ficheiro = fopen(arquivo, \textcolor{stringliteral}{"r"}); \textcolor{comment}{//**< Abre o ficheiro em modo leitura, como o nome ficheiro. */}}
+\DoxyCodeLine{23         \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{24 }
+\DoxyCodeLine{25         \textcolor{keywordflow}{if} (ficheiro == NULL) \textcolor{comment}{//**< Verifica se o ficheiro é nulo, caso seja entra no ciclo*/}}
+\DoxyCodeLine{26         \{}
+\DoxyCodeLine{27             printf(\textcolor{stringliteral}{"Erro: Não foi possível abrir \%s\(\backslash\)n"}, arquivo); \textcolor{comment}{//**< Apresenta uma mensagem de erro*/}}
+\DoxyCodeLine{28             \textcolor{keywordflow}{return};                                               \textcolor{comment}{//**< Retorno indicando falha na abertura do arquivo.*/}}
+\DoxyCodeLine{29         \}}
+\DoxyCodeLine{30 }
+\DoxyCodeLine{31         printf(\textcolor{stringliteral}{"\(\backslash\)nDados clientes:\(\backslash\)n\(\backslash\)n"});}
+\DoxyCodeLine{32 }
+\DoxyCodeLine{41         \textcolor{keywordflow}{while} (fscanf(ficheiro, \textcolor{stringliteral}{"\%d\(\backslash\)t\%s\(\backslash\)t\%d\(\backslash\)n"}, \&dados-\/>\mbox{\hyperlink{structDados_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], \&dados-\/>\mbox{\hyperlink{structDados_a0fbbd224bda911307f1ee8ad6496fa33}{num\_telefone}}[i]) == 3)}
+\DoxyCodeLine{42         \{}
+\DoxyCodeLine{43             printf(\textcolor{stringliteral}{"\(\backslash\)t\%04d \%s \%d\(\backslash\)n"}, dados-\/>\mbox{\hyperlink{structDados_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], dados-\/>\mbox{\hyperlink{structDados_a0fbbd224bda911307f1ee8ad6496fa33}{num\_telefone}}[i]);}
+\DoxyCodeLine{44             i++;}
+\DoxyCodeLine{45         \}}
+\DoxyCodeLine{46 }
+\DoxyCodeLine{47         fclose(ficheiro); \textcolor{comment}{//**< Fecha o arquivo. */}}
+\DoxyCodeLine{48     \}}
+\DoxyCodeLine{49     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(arquivo, \textcolor{stringliteral}{"dados\_tsv.bin"}) == 0) \textcolor{comment}{//**< Compara as strings, caso sejam iguais entra neste loop */}}
+\DoxyCodeLine{50     \{}
+\DoxyCodeLine{51         FILE *ficheiro = fopen(arquivo, \textcolor{stringliteral}{"rb"}); \textcolor{comment}{//**< Abre o ficheiro em modo leitura (binaria), com o nome ficheiro. */}}
+\DoxyCodeLine{52 }
+\DoxyCodeLine{53         \textcolor{keywordtype}{int} i = 0;}
+\DoxyCodeLine{54 }
+\DoxyCodeLine{55         \textcolor{keywordflow}{if} (ficheiro == NULL) \textcolor{comment}{//**< Verifica se o ficheiro é nulo, caso seja entra no ciclo*/}}
+\DoxyCodeLine{56         \{}
+\DoxyCodeLine{57             printf(\textcolor{stringliteral}{"Erro: Não foi possível abrir o arquivo\(\backslash\)n"}); \textcolor{comment}{//**< Apresenta uma mensagem de erro*/}}
+\DoxyCodeLine{58             \textcolor{keywordflow}{return};                                             \textcolor{comment}{//**< Retorno indicando falha na abertura do arquivo.*/}}
+\DoxyCodeLine{59         \}}
+\DoxyCodeLine{60         printf(\textcolor{stringliteral}{"\(\backslash\)nDados clientes:\(\backslash\)n\(\backslash\)n"});}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{67         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 3; i++)}
+\DoxyCodeLine{68         \{}
+\DoxyCodeLine{69             fread(\&dados-\/>\mbox{\hyperlink{structDados_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);      \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{70             fread(dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}), \mbox{\hyperlink{struct_8h_a2e1da8593b0244d8e9e3b84ef7b35e73}{max}}, ficheiro); \textcolor{comment}{//**< Modo leitura relativamente a dados binários do tipo string */}}
+\DoxyCodeLine{71             fread(\&dados-\/>\mbox{\hyperlink{structDados_a0fbbd224bda911307f1ee8ad6496fa33}{num\_telefone}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);   \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{72         \}}
+\DoxyCodeLine{76         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 3; i++)}
+\DoxyCodeLine{77         \{}
+\DoxyCodeLine{78             printf(\textcolor{stringliteral}{"\(\backslash\)t\%04d \%s \%d\(\backslash\)n"}, dados-\/>\mbox{\hyperlink{structDados_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], dados-\/>\mbox{\hyperlink{structDados_a0fbbd224bda911307f1ee8ad6496fa33}{num\_telefone}}[i]);}
+\DoxyCodeLine{79         \}}
+\DoxyCodeLine{80 }
+\DoxyCodeLine{81         fclose(ficheiro);}
+\DoxyCodeLine{82     \}}
+\DoxyCodeLine{83     \textcolor{keywordflow}{else} \textcolor{comment}{//**< Outros casos  */}}
+\DoxyCodeLine{84     \{}
+\DoxyCodeLine{85         printf(\textcolor{stringliteral}{"\(\backslash\)nErro: Ficheiro inválido\(\backslash\)n"}); \textcolor{comment}{//**< Mensagem de erro  */}}
+\DoxyCodeLine{86         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{87     \}}
+\DoxyCodeLine{88 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tsv_8c_a851dfba5fdb5a881c0fc6733f9bc4ed3}\label{tsv_8c_a851dfba5fdb5a881c0fc6733f9bc4ed3}} 
+\index{tsv.c@{tsv.c}!ficheiro\_tsv\_2@{ficheiro\_tsv\_2}}
+\index{ficheiro\_tsv\_2@{ficheiro\_tsv\_2}!tsv.c@{tsv.c}}
+\doxysubsubsection{\texorpdfstring{ficheiro\_tsv\_2()}{ficheiro\_tsv\_2()}}
+{\footnotesize\ttfamily void ficheiro\+\_\+tsv\+\_\+2 (\begin{DoxyParamCaption}\item[{char $\ast$}]{arquivo,  }\item[{\mbox{\hyperlink{structDieta}{Dieta}} $\ast$}]{dieta }\end{DoxyParamCaption})}
+
+
+
+Lê dados de um arquivo T\+SV (tab-\/separated values) e .bin e armazena os na estrutura \mbox{\hyperlink{structDieta}{Dieta}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arquivo} & Nome do arquivo (T\+S\+V$\vert$bin) a ser lido. \\
+\hline
+{\em dieta} & Ponteiro para a estrutura \mbox{\hyperlink{structDieta}{Dieta}} onde os dados serão armazenados. \\
+\hline
+\end{DoxyParams}
+Extrai dados da linha formatada do arquivo T\+SV e os armazena na estrutura \mbox{\hyperlink{structDieta}{Dieta}}. 
+\begin{DoxyParams}{Parameters}
+{\em linha} & Nome da linha do arquivo C\+SV a ser lido na função. \\
+\hline
+{\em dieta} & Invocação da struct dieta na função. \\
+\hline
+{\em i} & Variável para percorrer o array.\\
+\hline
+\end{DoxyParams}
+For\+: vai realizar a leitura dos dados do arquivo binário e armazená-\/los na struct \mbox{\hyperlink{structDados}{Dados}}.
+
+For\+: Apresenta os dados armazenados na struct \mbox{\hyperlink{structDados}{Dados}}.
+\begin{DoxyCode}{0}
+\DoxyCodeLine{97 \{}
+\DoxyCodeLine{98     \textcolor{keywordflow}{if} (strcmp(arquivo, \textcolor{stringliteral}{"dietas.tsv"}) == 0) \textcolor{comment}{//**< Compara as strings, caso sejam iguais entra neste loop */}}
+\DoxyCodeLine{99     \{}
+\DoxyCodeLine{100         FILE *ficheiro = fopen(arquivo, \textcolor{stringliteral}{"r"}); \textcolor{comment}{//**< Abre o ficheiro em modo leitura, como o nome ficheiro. */}}
+\DoxyCodeLine{101         \textcolor{keywordtype}{char} linha[\mbox{\hyperlink{struct_8h_a2e1da8593b0244d8e9e3b84ef7b35e73}{max}}];                      \textcolor{comment}{//**< Tamanho para armazenar cada linha do arquivo. */}}
+\DoxyCodeLine{102 }
+\DoxyCodeLine{103         \textcolor{keywordflow}{if} (ficheiro == NULL) \textcolor{comment}{//**< Verifica se o ficheiro é nulo, caso seja entra no ciclo*/}}
+\DoxyCodeLine{104         \{}
+\DoxyCodeLine{105             printf(\textcolor{stringliteral}{"Erro: Não foi possível abrir \%s\(\backslash\)n"}, arquivo); \textcolor{comment}{//**< Apresenta uma mensagem de erro*/}}
+\DoxyCodeLine{106             \textcolor{keywordflow}{return};                                               \textcolor{comment}{//**< Retorno indicando falha na abertura do arquivo.*/}}
+\DoxyCodeLine{107         \}}
+\DoxyCodeLine{108 }
+\DoxyCodeLine{109         printf(\textcolor{stringliteral}{"\(\backslash\)nDieta realizada pelo cliente:\(\backslash\)n\(\backslash\)n"});}
+\DoxyCodeLine{110 }
+\DoxyCodeLine{111         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < \mbox{\hyperlink{struct_8h_a2e1da8593b0244d8e9e3b84ef7b35e73}{max}}; i++)}
+\DoxyCodeLine{112         \{}
+\DoxyCodeLine{113             \textcolor{keywordflow}{if} (fgets(linha, \textcolor{keyword}{sizeof}(linha), ficheiro) == NULL) \textcolor{comment}{//**< Verifica se as linhas do arquivo CSV estão vazias. */}}
+\DoxyCodeLine{114             \{}
+\DoxyCodeLine{115                 \textcolor{keywordflow}{break}; \textcolor{comment}{//**< Sai do loop se não houver mais linhas para ler. */}}
+\DoxyCodeLine{116             \}}
+\DoxyCodeLine{117 }
+\DoxyCodeLine{126             sscanf(linha, \textcolor{stringliteral}{"\%d\(\backslash\)t\%d-\/\%d-\/\%d\(\backslash\)t\%99[\string^\(\backslash\)t]\(\backslash\)t\%[\string^\(\backslash\)t]\(\backslash\)t\%d "}, \&dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], \&dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], \&dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], \&dieta-\/>\mbox{\hyperlink{structDieta_abd9dcac3e2862ec4888de7b06cb1bf5f}{ano}}[i], dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], dieta-\/>\mbox{\hyperlink{structDieta_ab0e03ecd23af784b8412f2006194ca68}{alimento}}[i], \&dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]);}
+\DoxyCodeLine{127             printf(\textcolor{stringliteral}{"\(\backslash\)t\%04d \%02d-\/\%02d-\/\%d \%s \%s \%d \(\backslash\)n"}, dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], dieta-\/>\mbox{\hyperlink{structDieta_abd9dcac3e2862ec4888de7b06cb1bf5f}{ano}}[i], dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], dieta-\/>\mbox{\hyperlink{structDieta_ab0e03ecd23af784b8412f2006194ca68}{alimento}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]);}
+\DoxyCodeLine{128         \}}
+\DoxyCodeLine{129 }
+\DoxyCodeLine{130         fclose(ficheiro); \textcolor{comment}{//**< Fecha o arquivo após a leitura dos dados. */}}
+\DoxyCodeLine{131     \}}
+\DoxyCodeLine{132     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(arquivo, \textcolor{stringliteral}{"dietas\_tsv.bin"}) == 0) \textcolor{comment}{//**< Compara as strings, caso sejam iguais entra neste loop */}}
+\DoxyCodeLine{133     \{}
+\DoxyCodeLine{134         FILE *ficheiro = fopen(arquivo, \textcolor{stringliteral}{"rb"}); \textcolor{comment}{//**< Abre o ficheiro em modo leitura (binaria), com o nome ficheiro. */}}
+\DoxyCodeLine{135 }
+\DoxyCodeLine{136         \textcolor{keywordflow}{if} (ficheiro == NULL) \textcolor{comment}{//**< Verifica se o ficheiro é nulo, caso seja entra no ciclo*/}}
+\DoxyCodeLine{137         \{}
+\DoxyCodeLine{138             printf(\textcolor{stringliteral}{"Erro: Não foi possível abrir \%s\(\backslash\)n"}, arquivo); \textcolor{comment}{//**< Apresenta uma mensagem de erro*/}}
+\DoxyCodeLine{139             \textcolor{keywordflow}{return};                                               \textcolor{comment}{//**< Retorno indicando falha na abertura do arquivo.*/}}
+\DoxyCodeLine{140         \}}
+\DoxyCodeLine{141 }
+\DoxyCodeLine{142         printf(\textcolor{stringliteral}{"\(\backslash\)nDieta realizada pelo cliente:\(\backslash\)n\(\backslash\)n"});}
+\DoxyCodeLine{143 }
+\DoxyCodeLine{148         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 4; i++)}
+\DoxyCodeLine{149         \{}
+\DoxyCodeLine{150             fread(\&dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);  \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{151             fread(\&dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);        \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{152             fread(\&dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);        \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{153             fread(\&dieta-\/>\mbox{\hyperlink{structDieta_abd9dcac3e2862ec4888de7b06cb1bf5f}{ano}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);        \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{154             fread(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}), \mbox{\hyperlink{struct_8h_a2e1da8593b0244d8e9e3b84ef7b35e73}{max}}, ficheiro); \textcolor{comment}{//**< Modo leitura relativamente a dados binários do tipo string */}}
+\DoxyCodeLine{155             fread(dieta-\/>\mbox{\hyperlink{structDieta_ab0e03ecd23af784b8412f2006194ca68}{alimento}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}), \mbox{\hyperlink{struct_8h_a2e1da8593b0244d8e9e3b84ef7b35e73}{max}}, ficheiro); \textcolor{comment}{//**< Modo leitura relativamente a dados binários do tipo string */}}
+\DoxyCodeLine{156             fread(\&dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);   \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{157         \}}
+\DoxyCodeLine{161         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 4; i++)}
+\DoxyCodeLine{162         \{}
+\DoxyCodeLine{163             printf(\textcolor{stringliteral}{"\(\backslash\)t\%04d \%02d-\/\%02d-\/\%d \%s \%s \%d \(\backslash\)n"}, dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], dieta-\/>\mbox{\hyperlink{structDieta_abd9dcac3e2862ec4888de7b06cb1bf5f}{ano}}[i], dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], dieta-\/>\mbox{\hyperlink{structDieta_ab0e03ecd23af784b8412f2006194ca68}{alimento}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]);}
+\DoxyCodeLine{164         \}}
+\DoxyCodeLine{165 }
+\DoxyCodeLine{166         fclose(ficheiro);}
+\DoxyCodeLine{167     \}}
+\DoxyCodeLine{168     \textcolor{keywordflow}{else} \textcolor{comment}{//**< Outros casos  */}}
+\DoxyCodeLine{169     \{}
+\DoxyCodeLine{170         printf(\textcolor{stringliteral}{"\(\backslash\)nErro: Ficheiro inválido\(\backslash\)n"}); \textcolor{comment}{//**< Mensagem de erro  */}}
+\DoxyCodeLine{171         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{172     \}}
+\DoxyCodeLine{173 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tsv_8c_a59d620ebbc0688f96c7aa4343ddaf767}\label{tsv_8c_a59d620ebbc0688f96c7aa4343ddaf767}} 
+\index{tsv.c@{tsv.c}!ficheiro\_tsv\_3@{ficheiro\_tsv\_3}}
+\index{ficheiro\_tsv\_3@{ficheiro\_tsv\_3}!tsv.c@{tsv.c}}
+\doxysubsubsection{\texorpdfstring{ficheiro\_tsv\_3()}{ficheiro\_tsv\_3()}}
+{\footnotesize\ttfamily void ficheiro\+\_\+tsv\+\_\+3 (\begin{DoxyParamCaption}\item[{char $\ast$}]{arquivo,  }\item[{\mbox{\hyperlink{structPlano}{Plano}} $\ast$}]{plano }\end{DoxyParamCaption})}
+
+
+
+Lê dados de um arquivo T\+SV (tab-\/separated values) e .bin e armazena os na estrutura \mbox{\hyperlink{structPlano}{Plano}}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arquivo} & Nome do arquivo (T\+S\+V$\vert$bin) a ser lido. \\
+\hline
+{\em dieta} & Ponteiro para a estrutura \mbox{\hyperlink{structPlano}{Plano}} onde os dados serão armazenados. \\
+\hline
+\end{DoxyParams}
+Extrai dados da linha formatada do arquivo T\+SV e os armazena na estrutura \mbox{\hyperlink{structDieta}{Dieta}}. 
+\begin{DoxyParams}{Parameters}
+{\em linha} & Nome da linha do arquivo C\+SV a ser lido na função. \\
+\hline
+{\em dieta} & Invocação da struct dieta na função. \\
+\hline
+{\em i} & Variável para percorrer o array.\\
+\hline
+\end{DoxyParams}
+For\+: vai realizar a leitura dos dados do arquivo binário e armazená-\/los na struct \mbox{\hyperlink{structDados}{Dados}}.
+
+For\+: Apresenta os dados armazenados na struct \mbox{\hyperlink{structDados}{Dados}}.
+\begin{DoxyCode}{0}
+\DoxyCodeLine{181 \{}
+\DoxyCodeLine{182     \textcolor{keywordflow}{if} (strcmp(arquivo, \textcolor{stringliteral}{"planos.tsv"}) == 0) \textcolor{comment}{//**< Compara as strings, caso sejam iguais entra neste loop */}}
+\DoxyCodeLine{183     \{}
+\DoxyCodeLine{184         FILE *ficheiro = fopen(arquivo, \textcolor{stringliteral}{"r"}); \textcolor{comment}{//**< Abre o ficheiro em modo leitura, como o nome ficheiro. */}}
+\DoxyCodeLine{185         \textcolor{keywordtype}{char} linha[100];                      \textcolor{comment}{//**< Tamanho para armazenar cada linha do arquivo. */}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187         \textcolor{keywordflow}{if} (ficheiro == NULL) \textcolor{comment}{//**< Verifica se o ficheiro é nulo, caso seja entra no ciclo*/}}
+\DoxyCodeLine{188         \{}
+\DoxyCodeLine{189             printf(\textcolor{stringliteral}{"Erro: Não foi possível abrir \%s\(\backslash\)n"}, arquivo); \textcolor{comment}{//**< Apresenta uma mensagem de erro*/}}
+\DoxyCodeLine{190             \textcolor{keywordflow}{return};                                               \textcolor{comment}{//**< Retorno indicando falha na abertura do arquivo.*/}}
+\DoxyCodeLine{191         \}}
+\DoxyCodeLine{192 }
+\DoxyCodeLine{193         printf(\textcolor{stringliteral}{"\(\backslash\)nPlano nutricional:\(\backslash\)n\(\backslash\)n"});}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 100; i++)}
+\DoxyCodeLine{196         \{}
+\DoxyCodeLine{197             \textcolor{keywordflow}{if} (fgets(linha, \textcolor{keyword}{sizeof}(linha), ficheiro) == NULL) \textcolor{comment}{//**< Verifica se as linhas do arquivo CSV estão vazias. */}}
+\DoxyCodeLine{198             \{}
+\DoxyCodeLine{199                 \textcolor{keywordflow}{break}; \textcolor{comment}{//**< Sai do loop se não houver mais linhas para ler. */}}
+\DoxyCodeLine{200             \}}
+\DoxyCodeLine{201 }
+\DoxyCodeLine{210             sscanf(linha, \textcolor{stringliteral}{"\%d \(\backslash\)t \%d-\/\%d-\/\%d \(\backslash\)t \%99[\string^\(\backslash\)t] \(\backslash\)t \%d Cal, \%d Cal"}, \&plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], \&plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], \&plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], \&plano-\/>\mbox{\hyperlink{structPlano_abd9dcac3e2862ec4888de7b06cb1bf5f}{ano}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \&plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[i], \&plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[i]);}
+\DoxyCodeLine{211             printf(\textcolor{stringliteral}{"\(\backslash\)t\%04d \%02d-\/\%02d-\/\%d \%s \%d Cal, \%d Cal\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_abd9dcac3e2862ec4888de7b06cb1bf5f}{ano}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[i], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[i]);}
+\DoxyCodeLine{212         \}}
+\DoxyCodeLine{213         fclose(ficheiro); \textcolor{comment}{//**< Fecha o arquivo após a leitura dos dados. */}}
+\DoxyCodeLine{214     \}}
+\DoxyCodeLine{215     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(arquivo, \textcolor{stringliteral}{"planos\_tsv.bin"}) == 0) \textcolor{comment}{//**< Verifica se as linhas do arquivo CSV estão vazias. */}}
+\DoxyCodeLine{216     \{}
+\DoxyCodeLine{217         FILE *ficheiro = fopen(arquivo, \textcolor{stringliteral}{"rb"}); \textcolor{comment}{//**< Abre o ficheiro em modo leitura (binaria), com o nome ficheiro. */}}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219         \textcolor{keywordflow}{if} (ficheiro == NULL) \textcolor{comment}{//**< Verifica se o ficheiro é nulo, caso seja entra no ciclo*/}}
+\DoxyCodeLine{220         \{}
+\DoxyCodeLine{221             printf(\textcolor{stringliteral}{"Erro: Não foi possível abrir \%s\(\backslash\)n"}, arquivo); \textcolor{comment}{//**< Apresenta uma mensagem de erro*/}}
+\DoxyCodeLine{222             \textcolor{keywordflow}{return};                                               \textcolor{comment}{//**< Retorno indicando falha na abertura do arquivo.*/}}
+\DoxyCodeLine{223         \}}
+\DoxyCodeLine{224 }
+\DoxyCodeLine{225         printf(\textcolor{stringliteral}{"\(\backslash\)nPlano nutricional:\(\backslash\)n\(\backslash\)n"});}
+\DoxyCodeLine{229         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 3; i++)}
+\DoxyCodeLine{230         \{}
+\DoxyCodeLine{231             fread(\&plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);    \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{232             fread(\&plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);          \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{233             fread(\&plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);          \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{234             fread(\&plano-\/>\mbox{\hyperlink{structPlano_abd9dcac3e2862ec4888de7b06cb1bf5f}{ano}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro);          \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{235             fread(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{char}), \mbox{\hyperlink{struct_8h_a2e1da8593b0244d8e9e3b84ef7b35e73}{max}}, ficheiro);   \textcolor{comment}{//**< Modo leitura relativamente a dados binários do tipo string */}}
+\DoxyCodeLine{236             fread(\&plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro); \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{237             fread(\&plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[i], \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}), 1, ficheiro); \textcolor{comment}{//**< Modo leitura relativamente a dados binários interios */}}
+\DoxyCodeLine{238         \}}
+\DoxyCodeLine{242         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 3; i++)}
+\DoxyCodeLine{243         \{}
+\DoxyCodeLine{244             printf(\textcolor{stringliteral}{"\(\backslash\)t\%04d \%02d-\/\%02d-\/\%d \%s \%d Cal, \%d Cal \(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_abd9dcac3e2862ec4888de7b06cb1bf5f}{ano}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[i], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[i]);}
+\DoxyCodeLine{245         \}}
+\DoxyCodeLine{246 }
+\DoxyCodeLine{247         fclose(ficheiro); \textcolor{comment}{//**< Fecha o arquivo. */}}
+\DoxyCodeLine{248     \}}
+\DoxyCodeLine{249     \textcolor{keywordflow}{else} \textcolor{comment}{//**< Outros casos  */}}
+\DoxyCodeLine{250     \{}
+\DoxyCodeLine{251         printf(\textcolor{stringliteral}{"\(\backslash\)nErro: Ficheiro inválido\(\backslash\)n"}); \textcolor{comment}{//**< Mensagem de erro  */}}
+\DoxyCodeLine{252         \textcolor{keywordflow}{return};}
+\DoxyCodeLine{253     \}}
+\DoxyCodeLine{254 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tsv_8c_a527d0a237ca41559e52648b3c47e7f8f}\label{tsv_8c_a527d0a237ca41559e52648b3c47e7f8f}} 
+\index{tsv.c@{tsv.c}!listar\_plano\_tsv@{listar\_plano\_tsv}}
+\index{listar\_plano\_tsv@{listar\_plano\_tsv}!tsv.c@{tsv.c}}
+\doxysubsubsection{\texorpdfstring{listar\_plano\_tsv()}{listar\_plano\_tsv()}}
+{\footnotesize\ttfamily void listar\+\_\+plano\+\_\+tsv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structPlano}{Plano}} $\ast$}]{plano,  }\item[{int}]{diainicio,  }\item[{int}]{diafim,  }\item[{int}]{mesinicio,  }\item[{int}]{mesfim }\end{DoxyParamCaption})}
+
+
+
+Está função é responsável por listar um cliente existente no plano, a escolha do utilizador para ficheiros T\+SV. 
+
+Realiza a leitura do número do cliente e da refeição que o utilizador pretende visualizar, verifica o periodo em seguida compra cliente e refeição com os dados do plano, caso sejam verdadeiros apresenta os dados do cliente caso sejam falsa aprenta uma mensagem de erro.
+
+
+\begin{DoxyParams}{Parameters}
+{\em plano} & Invocação da struct plano na função. \\
+\hline
+{\em diainicio} & Invocação do dia de início defenido. \\
+\hline
+{\em mesinicio} & Invocação do mes de início defenido. \\
+\hline
+{\em diafim} & Invocação do dia de fim defenido. \\
+\hline
+{\em mesfim} & Invocação do mes de fim defenido. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{270 \{}
+\DoxyCodeLine{271     \textcolor{keywordtype}{int} cliente;       \textcolor{comment}{//**< Armazena nº cliente*/}}
+\DoxyCodeLine{272     \textcolor{keywordtype}{char} refeicao[20]; \textcolor{comment}{//**< Armazena o nome do cliente*/}}
+\DoxyCodeLine{273 }
+\DoxyCodeLine{274     printf(\textcolor{stringliteral}{"\(\backslash\)nDigite o cliente e a refeição que pretende visualizar (numero refeição):"});}
+\DoxyCodeLine{275     scanf(\textcolor{stringliteral}{"\%d\(\backslash\)t \%[\string^\(\backslash\)n]"}, \&cliente, refeicao); \textcolor{comment}{//**< Realiza a leitura */}}
+\DoxyCodeLine{276 }
+\DoxyCodeLine{277     printf(\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tPlano nutricional do cliente \%04d, refeição:\%s\(\backslash\)n\(\backslash\)n"}, cliente, refeicao);}
+\DoxyCodeLine{278 }
+\DoxyCodeLine{279     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 100; i++)}
+\DoxyCodeLine{280     \{}
+\DoxyCodeLine{281         \textcolor{keywordflow}{if} ((mesinicio < plano-\/>mes[i] \&\& plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i] < mesfim) || \textcolor{comment}{//**< Verifica o período se for válido entra no loop */}}
+\DoxyCodeLine{282             (mesinicio == plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i] \&\& diainicio <= plano-\/>dia[i] \&\& plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i] <= diafim) ||}
+\DoxyCodeLine{283             (mesfim == plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i] \&\& diainicio <= plano-\/>dia[i] \&\& plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i] <= diafim))}
+\DoxyCodeLine{284         \{}
+\DoxyCodeLine{285             \textcolor{keywordflow}{if} (cliente == plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i]) \textcolor{comment}{//**< Verifica se o cliente existe */}}
+\DoxyCodeLine{286             \{}
+\DoxyCodeLine{287                 \textcolor{keywordflow}{if} (strcmp(refeicao, plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i]) == 0) \textcolor{comment}{//**< Verifica se a refeição existe */}}
+\DoxyCodeLine{288                 \{}
+\DoxyCodeLine{289                     printf(\textcolor{stringliteral}{"\(\backslash\)t\%04d \%02d-\/\%02d-\/\%d \%s \%d Cal, \%d Cal\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_abd9dcac3e2862ec4888de7b06cb1bf5f}{ano}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[i], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[i]); \textcolor{comment}{//**< Apresenta o plano do cliente selecionado */}}
+\DoxyCodeLine{290                 \}}
+\DoxyCodeLine{291             \}}
+\DoxyCodeLine{292         \}}
+\DoxyCodeLine{293     \}}
+\DoxyCodeLine{294 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{tsv_8c_a0b50c489e21037ad51ee9cd4c9610246}\label{tsv_8c_a0b50c489e21037ad51ee9cd4c9610246}} 
+\index{tsv.c@{tsv.c}!tabela\_tsv@{tabela\_tsv}}
+\index{tabela\_tsv@{tabela\_tsv}!tsv.c@{tsv.c}}
+\doxysubsubsection{\texorpdfstring{tabela\_tsv()}{tabela\_tsv()}}
+{\footnotesize\ttfamily void tabela\+\_\+tsv (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDados}{Dados}} $\ast$}]{dados,  }\item[{\mbox{\hyperlink{structDieta}{Dieta}} $\ast$}]{dieta,  }\item[{\mbox{\hyperlink{structPlano}{Plano}} $\ast$}]{plano }\end{DoxyParamCaption})}
+
+
+
+Tabela com todas as informações do plano nutricional para ficheiros T\+SV. 
+
+Inicialmente, a mesma verifica o numero de cliente e a refeição, dentro dessas condições soma as calorias e por cliente e refeição. Por fim verifica o numero de cliente e a refeição, e apresenta as calorias acumuladas por cliente.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dados} & Invocação da struct dados na função. \\
+\hline
+{\em dieta} & Invocação da struct dieta na função. \\
+\hline
+{\em plano} & Invocação da struct plano na função. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{456 \{}
+\DoxyCodeLine{457     \textcolor{keywordtype}{float} cal\_pequeno1 = 0, cal\_almoco1 = 0, cal\_jantar1 = 0; \textcolor{comment}{//**< Armazena as calorias cliente 1*/}}
+\DoxyCodeLine{458     \textcolor{keywordtype}{float} cal\_pequeno2 = 0, cal\_almoco2 = 0, cal\_jantar2 = 0; \textcolor{comment}{//**< Armazena as calorias cliente 2*/}}
+\DoxyCodeLine{459     \textcolor{keywordtype}{float} cal\_pequeno3 = 0, cal\_almoco3 = 0, cal\_jantar3 = 0; \textcolor{comment}{//**< Armazena as calorias cliente 3*/}}
+\DoxyCodeLine{460 }
+\DoxyCodeLine{461     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 6; i++)}
+\DoxyCodeLine{462     \{}
+\DoxyCodeLine{463 }
+\DoxyCodeLine{464         \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == 1) \textcolor{comment}{//**< Verifica o cliente */}}
+\DoxyCodeLine{465         \{}
+\DoxyCodeLine{466             \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"pequeno almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{467             \{}
+\DoxyCodeLine{468                 cal\_pequeno1 = cal\_pequeno1 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Soma as calorias */}}
+\DoxyCodeLine{469             \}}
+\DoxyCodeLine{470             \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{471             \{}
+\DoxyCodeLine{472                 cal\_almoco1 = cal\_almoco1 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Soma as calorias */}}
+\DoxyCodeLine{473             \}}
+\DoxyCodeLine{474             \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"jantar"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{475             \{}
+\DoxyCodeLine{476                 cal\_jantar1 = cal\_jantar1 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Soma as calorias */}}
+\DoxyCodeLine{477             \}}
+\DoxyCodeLine{478         \}}
+\DoxyCodeLine{479 }
+\DoxyCodeLine{480         \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == 2) \textcolor{comment}{//**< Verifica o cliente */}}
+\DoxyCodeLine{481         \{}
+\DoxyCodeLine{482             \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"pequeno almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{483             \{}
+\DoxyCodeLine{484                 cal\_pequeno2 = cal\_pequeno2 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Soma as calorias */}}
+\DoxyCodeLine{485             \}}
+\DoxyCodeLine{486             \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{487             \{}
+\DoxyCodeLine{488                 cal\_almoco2 = cal\_almoco2 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Soma as calorias */}}
+\DoxyCodeLine{489             \}}
+\DoxyCodeLine{490             \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"jantar"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{491             \{}
+\DoxyCodeLine{492                 cal\_jantar2 = cal\_jantar2 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i];}
+\DoxyCodeLine{493             \}}
+\DoxyCodeLine{494         \}}
+\DoxyCodeLine{495 }
+\DoxyCodeLine{496         \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == 3) \textcolor{comment}{//**< Verifica o cliente */}}
+\DoxyCodeLine{497         \{}
+\DoxyCodeLine{498             \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"pequeno almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{499             \{}
+\DoxyCodeLine{500                 cal\_pequeno3 = cal\_pequeno3 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Soma as calorias */}}
+\DoxyCodeLine{501             \}}
+\DoxyCodeLine{502             \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{503             \{}
+\DoxyCodeLine{504                 cal\_almoco3 = cal\_almoco3 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Soma as calorias */}}
+\DoxyCodeLine{505             \}}
+\DoxyCodeLine{506             \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[i], \textcolor{stringliteral}{"jantar"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{507             \{}
+\DoxyCodeLine{508                 cal\_jantar3 = cal\_jantar3 + dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i]; \textcolor{comment}{//**< Soma as calorias */}}
+\DoxyCodeLine{509             \}}
+\DoxyCodeLine{510         \}}
+\DoxyCodeLine{511     \}}
+\DoxyCodeLine{512 }
+\DoxyCodeLine{513     printf(\textcolor{stringliteral}{"\(\backslash\)nTabela:\(\backslash\)n\(\backslash\)n"});}
+\DoxyCodeLine{514     printf(\textcolor{stringliteral}{"\(\backslash\)t-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"});}
+\DoxyCodeLine{515     printf(\textcolor{stringliteral}{"\(\backslash\)t|   NP   | Paciente |   Tipo Refeição  |   Inicio   |    Fim     | Mínimo | Máximo  | Consumo |\(\backslash\)n"});}
+\DoxyCodeLine{516     printf(\textcolor{stringliteral}{"\(\backslash\)t|-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/|-\/-\/-\/-\/-\/-\/-\/-\/-\/|\(\backslash\)n"});}
+\DoxyCodeLine{517 }
+\DoxyCodeLine{518     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 3; i++)}
+\DoxyCodeLine{519     \{}
+\DoxyCodeLine{520         \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} j = 0; j < 3; j++)}
+\DoxyCodeLine{521         \{}
+\DoxyCodeLine{522             \textcolor{keywordflow}{if} (dados-\/>\mbox{\hyperlink{structDados_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j]) \textcolor{comment}{//**< Responsável por verificar os clientes que contém planos, para realizar a aprsentação do nome correto  */}}
+\DoxyCodeLine{523             \{}
+\DoxyCodeLine{524 }
+\DoxyCodeLine{525                 \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == 1) \textcolor{comment}{//**< Verifica o cliente */}}
+\DoxyCodeLine{526                 \{}
+\DoxyCodeLine{527                     \textcolor{keywordflow}{if} (strcmp(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], \textcolor{stringliteral}{"jantar"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{528                     \{}
+\DoxyCodeLine{529 }
+\DoxyCodeLine{530                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/16s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   |  \%0.2f   |\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j], cal\_jantar1); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{531                     \}}
+\DoxyCodeLine{532                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], \textcolor{stringliteral}{"almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{533                     \{}
+\DoxyCodeLine{534                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/17s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   |  \%0.2f |\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j], cal\_almoco1); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{535                     \}}
+\DoxyCodeLine{536                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], \textcolor{stringliteral}{"pequeno almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{537                     \{}
+\DoxyCodeLine{538                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/17s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   |  \%0.2f |\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j], cal\_pequeno1); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{539                     \}}
+\DoxyCodeLine{540                     \textcolor{keywordflow}{else} \textcolor{comment}{//**< Outros casos */}}
+\DoxyCodeLine{541                     \{}
+\DoxyCodeLine{542                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/17s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   | -\/-\/-\/-\/-\/\(\backslash\)n "}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j]); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{543                     \}}
+\DoxyCodeLine{544                 \}}
+\DoxyCodeLine{545                 \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == 2) \textcolor{comment}{//**< Verifica o cliente */}}
+\DoxyCodeLine{546                 \{}
+\DoxyCodeLine{547                     \textcolor{keywordflow}{if} (strcmp(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], \textcolor{stringliteral}{"jantar"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{548                     \{}
+\DoxyCodeLine{549 }
+\DoxyCodeLine{550                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/16s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   |  \%0.2f   |\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j], cal\_jantar2); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{551                     \}}
+\DoxyCodeLine{552                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], \textcolor{stringliteral}{"almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{553                     \{}
+\DoxyCodeLine{554                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/17s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   |  \%0.2f |\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j], cal\_almoco2); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{555                     \}}
+\DoxyCodeLine{556                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], \textcolor{stringliteral}{"pequeno almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{557                     \{}
+\DoxyCodeLine{558                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/17s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   |  \%0.2f |\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j], cal\_pequeno2); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{559                     \}}
+\DoxyCodeLine{560                     \textcolor{keywordflow}{else} \textcolor{comment}{//**< Outros casos */}}
+\DoxyCodeLine{561                     \{}
+\DoxyCodeLine{562                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/17s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   | -\/-\/-\/-\/-\/\(\backslash\)n "}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j]); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{563                     \}}
+\DoxyCodeLine{564                 \}}
+\DoxyCodeLine{565 }
+\DoxyCodeLine{566                 \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[i] == 3) \textcolor{comment}{//**< Verifica o cliente */}}
+\DoxyCodeLine{567                 \{}
+\DoxyCodeLine{568                     \textcolor{keywordflow}{if} (strcmp(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], \textcolor{stringliteral}{"jantar"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{569                     \{}
+\DoxyCodeLine{570 }
+\DoxyCodeLine{571                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/16s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   |  \%0.2f   |\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j], cal\_jantar3); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{572                     \}}
+\DoxyCodeLine{573                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], \textcolor{stringliteral}{"almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{574                     \{}
+\DoxyCodeLine{575                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/17s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   |  \%0.2f |\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j], cal\_almoco3); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{576                     \}}
+\DoxyCodeLine{577                     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], \textcolor{stringliteral}{"pequeno almoço"}) == 0) \textcolor{comment}{//**< Verifica a refeição */}}
+\DoxyCodeLine{578                     \{}
+\DoxyCodeLine{579                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/17s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   |  \%0.2f |\(\backslash\)n"}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j], cal\_pequeno3); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{580                     \}}
+\DoxyCodeLine{581                     \textcolor{keywordflow}{else} \textcolor{comment}{//**< Outros casos */}}
+\DoxyCodeLine{582                     \{}
+\DoxyCodeLine{583                         printf(\textcolor{stringliteral}{"\(\backslash\)t|  \%04d  |   \%s  | \%-\/17s | \%02d-\/\%02d-\/2023 | \%02d-\/\%02d-\/2023 |  \%d   |   \%d   | -\/-\/-\/-\/-\/\(\backslash\)n "}, plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[i], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i], dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i], plano-\/>\mbox{\hyperlink{structPlano_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j], plano-\/>\mbox{\hyperlink{structPlano_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j], plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[j], plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[j]); \textcolor{comment}{//**< Apresenta linha da tabela */}}
+\DoxyCodeLine{584                     \}}
+\DoxyCodeLine{585                 \}}
+\DoxyCodeLine{586             \}}
+\DoxyCodeLine{587         \}}
+\DoxyCodeLine{588     \}}
+\DoxyCodeLine{589     printf(\textcolor{stringliteral}{"\(\backslash\)t-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\(\backslash\)n"});}
+\DoxyCodeLine{590 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,64 @@
+Licenciatura em Engenharia de Sistemas Informáticos 2023-\/24
+
+Laboratórios de Informática\hypertarget{index_autotoc_md1}{}\doxysection{Grupo  30}\label{index_autotoc_md1}
+\tabulinesep=1mm
+\begin{longtabu}spread 0pt [c]{*{2}{|X[-1]}|}
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Número }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nome  }\\\cline{1-2}
+\endfirsthead
+\hline
+\endfoot
+\hline
+\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Número }&\PBS\centering \cellcolor{\tableheadbgcolor}\textbf{ Nome  }\\\cline{1-2}
+\endhead
+a23010 &Hugo Cruz  \\\cline{1-2}
+a23015 &Lino Azevedo  \\\cline{1-2}
+a23016 &Dani Cruz  \\\cline{1-2}
+\end{longtabu}
+\hypertarget{index_autotoc_md2}{}\doxysection{Organização}\label{index_autotoc_md2}
+\href{./doc/}{\texttt{ doc/}} documentação com o relatório
+
+\href{./src/}{\texttt{ src/}} Código da solução desenvolvida\hypertarget{index_autotoc_md3}{}\doxysection{Relatórios e Código}\label{index_autotoc_md3}
+
+\begin{DoxyItemize}
+\item {\bfseries{Relatório La\+TeX\+:}} \href{caminho/do/arquivo}{\texttt{ doc/relatorio/d-\/30-\/doc.\+pdf}}
+\item {\bfseries{Relatório Doxygen\+:}} \href{caminho/do/arquivo}{\texttt{ doc/latex/d-\/30-\/refman.\+pdf}}
+\item {\bfseries{Código Fonte\+:}} \href{caminho/do/diretório}{\texttt{ src/}}
+\end{DoxyItemize}\hypertarget{index_autotoc_md4}{}\doxysection{Descrição do Projeto}\label{index_autotoc_md4}
+O projeto consiste em desenvolver um programa em C para gerenciar informações relacionadas à saúde e nutrição de pacientes. O programa permite carregar dados de pacientes, informações sobre suas dietas e planos nutricionais a partir de arquivos de texto. Além disso, oferece funcionalidades como apresentar estatísticas sobre a ingestão de calorias, listar pacientes com refeições fora do intervalo prescrito e gerar tabelas de refeições planeadas e realizadas\hypertarget{index_autotoc_md5}{}\doxysection{Estratégia de Desenvolvimento}\label{index_autotoc_md5}
+
+\begin{DoxyItemize}
+\item {\bfseries{Hugo Cruz (a23010)\+:}} Implementação do modo de utilização, argumentos, listar o paciente do plano nutricional, tabelas ficheiros binários, e divisão em ficheiros .c, .h, C\+SV, desenvolvimento do relatório.
+\item {\bfseries{Lino Azevedo (a23015)\+:}} Implementação do contador, listagem de cliente fora intervalo de calorias, calculo da média de calorias por cliente, num determinado período, desenvolvimento do relatório.
+\item {\bfseries{Dani Cruz (a23016)\+:}} Implementação de ficheiros C\+SV e T\+SV, divisão em ficheiros .c .h para as funções T\+SV, e ficheiro.\+h contendo as struct, desenvolvimento do relatório.
+\end{DoxyItemize}\hypertarget{index_autotoc_md6}{}\doxysection{Decisões Coletivas}\label{index_autotoc_md6}
+-\/No âmbito da nossa colaboração no projeto em grupo, começámos por realizar uma seleção criteriosa de ficheiros C\+SV. Durante a análise, constatámos que esses ficheiros utilizam tanto pontos e vírgulas como vírgulas para separar as palavras. Esta escolha revelou-\/se fundamental, uma vez que verificámos que as informações presentes no enunciado seguiam precisamente essa estrutura. Optámos, assim, por utilizar esses ficheiros, com o propósito de assegurar uma correspondência exata com o formato das informações fornecidas, conclusão que considerámos ser a mais apropriada para atingir os nossos objetivos.
+
+-\/Paralelamente, no decurso do desenvolvimento do projeto, deparámo-\/nos com um desafio relacionado à utilização de variáveis em funções. Após uma deliberação conjunta, decidimos adotar a abordagem estruturada através da utilização de \char`\"{}struct\char`\"{}, o que nos possibilita a utilização das variáveis em qualquer momento do código.
+
+-\/Por fim, decidimos ajustar a nossa estratégia em relação aos argumentos. Inicialmente, optámos por utilizar 1 argumento apenas para deferir o modo onde nos deparamos poder vir a ser um problema relativamente aos ficheiros binários, então colocamos 5 argumentos podendo definir os ficheiros que pretendíamos utilizar.\hypertarget{index_autotoc_md7}{}\doxysection{Compilação e Execução\+:}\label{index_autotoc_md7}
+Para compilar este projeto, é necessário ter o comando \char`\"{}make\char`\"{} instalado. Após a instalação, um arquivo Makefile está disponível no diretório. Este arquivo é responsável por compilar automaticamente todos os arquivos. Basta executar make para realizar a compilação.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make}
+\end{DoxyCode}
+\hypertarget{index_autotoc_md8}{}\doxysection{Comando com Sintaxe de Utilização\+:}\label{index_autotoc_md8}
+
+\begin{DoxyItemize}
+\item Ficheiros (C\+SV)\+: {\ttfamily ./prog -\/csv dados.\+csv dietas.\+csv planos.\+csv}
+\item Ficheiros (T\+SV)\+: {\ttfamily ./prog -\/tsv dados.\+tsv dietas.\+tsv planos.\+tsv}
+\item Ficheiros (C\+S\+V$\vert$bin)\+: {\ttfamily ./prog -\/csv dados.\+csv dietas\+\_\+csv.\+bin planos.\+csv}
+\item Ficheiros (T\+S\+V$\vert$bin)\+: {\ttfamily ./prog -\/tsv dados.\+tsv dietas\+\_\+tsv.\+bin planos\+\_\+tsv.\+bin}
+\end{DoxyItemize}\hypertarget{index_autotoc_md9}{}\doxysection{Conclusão}\label{index_autotoc_md9}
+O presente relatório é parte integrante da avaliação do trabalho prático da Unidade Curricular Laboratórios de Informática.
+
+Ao longo do projeto, enfrentamos a decisão crucial de não apenas utilizar ficheiros C\+SV, mas também de incorporar ficheiros T\+SV, que são delimitados por tabulações, e posteriormente, ficheiros no formato binário.
+
+Durante o desenvolvimento, deparamo-\/nos com a necessidade de uma abordagem estruturada para manipular variáveis em funções. A decisão coletiva de adotar \char`\"{}struct\char`\"{} conferiu-\/nos flexibilidade, permitindo o acesso a variáveis em qualquer ponto do código. Esta escolha contribuiu significativamente para a clareza e organização do nosso código.
+
+Uma das etapas que se revelou particularmente desafiadora foi a elaboração do relatório em La\+TeX, uma tarefa que conseguimos concluir com êxito.
+
+Este projeto não apenas aprimorou as nossas habilidades técnicas, mas também destacou a importância de decisões ponderadas e flexibilidade durante o processo de desenvolvimento. Cada desafio superado contribuiu para uma compreensão mais profunda das melhores práticas de programação e promoveu um ambiente colaborativo e eficiente na execução do projeto em grupo.
+
+Embora tenha sido uma etapa desafiadora, acreditamos que alcançamos não só os objetivos propostos, mas também os prazos definidos. 

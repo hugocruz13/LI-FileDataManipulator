@@ -1,0 +1,315 @@
+\hypertarget{main_8c}{}\doxysection{/home/hugoc/d-\/30-\/1/src/main.c File Reference}
+\label{main_8c}\index{/home/hugoc/d-\/30-\/1/src/main.c@{/home/hugoc/d-\/30-\/1/src/main.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}csv.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}tsv.\+h\char`\"{}}\newline
+Include dependency graph for main.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{main_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8c_a91c8a8461e7eb671b50770908c96c53b}{periodo}} (int $\ast$diainicio, int $\ast$mesinicio, int $\ast$diafim, int $\ast$mesfim)
+\begin{DoxyCompactList}\small\item\em Define um período especificado pelos usuários. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_af24b77aa2d9a4da6aea029eee9c1243d}{contador\+\_\+calorias}} (\mbox{\hyperlink{structDieta}{Dieta}} $\ast$dieta, int diainicio, int diafim, int mesinicio, int mesfim)
+\begin{DoxyCompactList}\small\item\em Realiza a contagem de quem ultrapassou certas calorias num período de tempo. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{main_8c_ab2754a70c1dfaf02ae5edd59a9ed3756}{listagem}} (\mbox{\hyperlink{structDieta}{Dieta}} $\ast$dieta, \mbox{\hyperlink{structPlano}{Plano}} $\ast$plano, \mbox{\hyperlink{structDados}{Dados}} $\ast$dados, int diainicio, int diafim, int mesinicio, int mesfim)
+\begin{DoxyCompactList}\small\item\em Está função é responsável por ordenar os clientes por ordem decrescente e apresentar os clientes fora do intervalo de calorias. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Função principal do programa. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Grupo 30 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+0.\+73 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/12-\/29
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_af24b77aa2d9a4da6aea029eee9c1243d}\label{main_8c_af24b77aa2d9a4da6aea029eee9c1243d}} 
+\index{main.c@{main.c}!contador\_calorias@{contador\_calorias}}
+\index{contador\_calorias@{contador\_calorias}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{contador\_calorias()}{contador\_calorias()}}
+{\footnotesize\ttfamily void contador\+\_\+calorias (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDieta}{Dieta}} $\ast$}]{dieta,  }\item[{int}]{diainicio,  }\item[{int}]{diafim,  }\item[{int}]{mesinicio,  }\item[{int}]{mesfim }\end{DoxyParamCaption})}
+
+
+
+Realiza a contagem de quem ultrapassou certas calorias num período de tempo. 
+
+Esta função solicita ao usuário que insira um valor de calorias e um período de tempo (no formato dd-\/mm), e verifica se as datas estão dentro de intervalos válidos (dia\+: 1-\/31, mês\+: 1-\/12), e se as calorias do ficheiro dietas forem maiores que as inseridas, realiza a contagem de quantos utilizadores ultrapassaram as calorias.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dieta} & Invocação da struct dieta na função. \\
+\hline
+{\em diainicio} & Invocação do dia de início defenido. \\
+\hline
+{\em mesinicio} & Invocação do mes de início defenido. \\
+\hline
+{\em diafim} & Invocação do dia de fim defenido. \\
+\hline
+{\em mesfim} & Invocação do mes de fim defenido. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{58 \{}
+\DoxyCodeLine{59     \textcolor{keywordtype}{float} calorias;   \textcolor{comment}{//**< Armazena as calorias inseridas pelo utilizador  */}}
+\DoxyCodeLine{60     \textcolor{keywordtype}{int} contador = 0; \textcolor{comment}{//**< Realiza a contagem dos clientes que ultrapassaram as calorias inseridas */}}
+\DoxyCodeLine{61 }
+\DoxyCodeLine{62     printf(\textcolor{stringliteral}{"\(\backslash\)nDigite o valor de calorias que pretende ver quantos utilizadores ultrapassaram:"});}
+\DoxyCodeLine{63     scanf(\textcolor{stringliteral}{"\%f"}, \&calorias);}
+\DoxyCodeLine{64 }
+\DoxyCodeLine{65     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i = 0; i < 4; i++)}
+\DoxyCodeLine{66     \{}
+\DoxyCodeLine{67         \textcolor{keywordflow}{if} ((mesinicio < dieta-\/>mes[i] \&\& dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i] < mesfim) || \textcolor{comment}{//**< Verifica o período se for válido entra no loop */}}
+\DoxyCodeLine{68             (mesinicio == dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i] \&\& diainicio <= dieta-\/>dia[i] \&\& dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i] <= diafim) ||}
+\DoxyCodeLine{69             (mesfim == dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[i] \&\& diainicio <= dieta-\/>dia[i] \&\& dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[i] <= diafim))}
+\DoxyCodeLine{70         \{}
+\DoxyCodeLine{71             \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[i] > calorias) \textcolor{comment}{//**< Verifica se as calorias são maiores que as inseridas pelo utilizador */}}
+\DoxyCodeLine{72             \{}
+\DoxyCodeLine{73                 contador++; \textcolor{comment}{//**< Contador de utilizadores que ultrapassaram as calorias}}
+\DoxyCodeLine{74             \}}
+\DoxyCodeLine{75         \}}
+\DoxyCodeLine{76     \}}
+\DoxyCodeLine{77 }
+\DoxyCodeLine{78     printf(\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tDe 4 utilizadores \%d ultrapassaram as \%0.01f calorias. \(\backslash\)n"}, contador, calorias);}
+\DoxyCodeLine{79 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_ab2754a70c1dfaf02ae5edd59a9ed3756}\label{main_8c_ab2754a70c1dfaf02ae5edd59a9ed3756}} 
+\index{main.c@{main.c}!listagem@{listagem}}
+\index{listagem@{listagem}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{listagem()}{listagem()}}
+{\footnotesize\ttfamily void listagem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structDieta}{Dieta}} $\ast$}]{dieta,  }\item[{\mbox{\hyperlink{structPlano}{Plano}} $\ast$}]{plano,  }\item[{\mbox{\hyperlink{structDados}{Dados}} $\ast$}]{dados,  }\item[{int}]{diainicio,  }\item[{int}]{diafim,  }\item[{int}]{mesinicio,  }\item[{int}]{mesfim }\end{DoxyParamCaption})}
+
+
+
+Está função é responsável por ordenar os clientes por ordem decrescente e apresentar os clientes fora do intervalo de calorias. 
+
+Inicialmente, a mesma verifica se as datas estão dentro de intervalos válidos, restringindo assim alguns dos clientes, caso as datas estejam dfora dos intervalos válidos, compara os números de cliente da struct dieta com os números de cliente da struct plano, garantindo que os clientes que não estão no plano não são apresentados. Por fim, compara as refeições, garantindo que os clientes realizem as refeições planeadas no plano, e valida se estão fora do intervalo de calorias.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dieta} & Invocação da struct dieta na função. \\
+\hline
+{\em plano} & Invocação da struct plano na função. \\
+\hline
+{\em diainicio} & Invocação do dia de início defenido. \\
+\hline
+{\em mesinicio} & Invocação do mes de início defenido. \\
+\hline
+{\em diafim} & Invocação do dia de fim defenido. \\
+\hline
+{\em mesfim} & Invocação do mes de fim defenido. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{97 \{}
+\DoxyCodeLine{98     \textcolor{keywordtype}{int} j, k, temp;                    \textcolor{comment}{//**< Variáveis auxiliares */}}
+\DoxyCodeLine{99     \textcolor{keywordtype}{int} clientes\_verificados[4] = \{0\}; \textcolor{comment}{//**< Array para armazenar os clientes verificados */}}
+\DoxyCodeLine{100     \textcolor{keywordtype}{char} nomes\_ordenados[\mbox{\hyperlink{struct_8h_a2e1da8593b0244d8e9e3b84ef7b35e73}{max}}][\mbox{\hyperlink{struct_8h_a2e1da8593b0244d8e9e3b84ef7b35e73}{max}}];    \textcolor{comment}{//**< Matriz para armazenar os nomes dos clientes verificados */}}
+\DoxyCodeLine{101 }
+\DoxyCodeLine{102     \textcolor{keywordflow}{for} (j = 0; j < 4; j++)}
+\DoxyCodeLine{103     \{}
+\DoxyCodeLine{104         \textcolor{keywordflow}{if} ((mesinicio < dieta-\/>mes[j] \&\& dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j] < mesfim) || \textcolor{comment}{//**< Verifica o período se for válido entra no loop */}}
+\DoxyCodeLine{105             (mesinicio == dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j] \&\& diainicio <= dieta-\/>dia[j] \&\& dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j] <= diafim) ||}
+\DoxyCodeLine{106             (mesfim == dieta-\/>\mbox{\hyperlink{structDieta_a8122f22f2b6991fc75390adf00de9a2e}{mes}}[j] \&\& diainicio <= dieta-\/>dia[j] \&\& dieta-\/>\mbox{\hyperlink{structDieta_aae7ff87d78065c0912ec8cbc274a64e1}{dia}}[j] <= diafim))}
+\DoxyCodeLine{107         \{}
+\DoxyCodeLine{108             \textcolor{keywordflow}{for} (k = 0; k < 4; k++)}
+\DoxyCodeLine{109             \{}
+\DoxyCodeLine{110                 \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j] == plano-\/>\mbox{\hyperlink{structPlano_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[k]) \textcolor{comment}{//**< Verifica se os clientes existem em planos */}}
+\DoxyCodeLine{111                 \{}
+\DoxyCodeLine{112                     \textcolor{keywordflow}{if} (strcmp(dieta-\/>\mbox{\hyperlink{structDieta_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[j], plano-\/>\mbox{\hyperlink{structPlano_ae19b337cfab613823fdfd8e68a275c3f}{refeicao}}[k]) == 0) \textcolor{comment}{//**< Verifica se as refeições existem em planos */}}
+\DoxyCodeLine{113                     \{}
+\DoxyCodeLine{114                         \textcolor{keywordflow}{if} (dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[j] < plano-\/>\mbox{\hyperlink{structPlano_afdd59358caedff96f77b6237e3b82218}{calorias\_min}}[k] || dieta-\/>\mbox{\hyperlink{structDieta_a3410ae0fe8359b545ab8f72592d84f50}{calorias}}[j] > plano-\/>\mbox{\hyperlink{structPlano_a46a6a4ae44bae7187cc23be2828a4558}{calorias\_max}}[k]) \textcolor{comment}{//**< Verifica se as calorias estão fora do intervalo defenido */}}
+\DoxyCodeLine{115                         \{}
+\DoxyCodeLine{116                             \textcolor{keywordflow}{if} (dados-\/>\mbox{\hyperlink{structDados_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j] != 0)}
+\DoxyCodeLine{117                             \{}
+\DoxyCodeLine{118                                 clientes\_verificados[j] = dados-\/>\mbox{\hyperlink{structDados_aa190442ba50c89afd81492886f0d2fc4}{n\_cliente}}[j];      \textcolor{comment}{//**< Armazena os clientes verificados num variavel da função*/}}
+\DoxyCodeLine{119                                 strcpy(nomes\_ordenados[j], dados-\/>\mbox{\hyperlink{structDados_ac0f5d5ce72138c630bd74d4f8a1832ba}{nome\_cliente}}[j]); \textcolor{comment}{//**< Armazena os nomes dos clientes verificados num variavel da função*/}}
+\DoxyCodeLine{120                             \}}
+\DoxyCodeLine{121                         \}}
+\DoxyCodeLine{122                     \}}
+\DoxyCodeLine{123                 \}}
+\DoxyCodeLine{124             \}}
+\DoxyCodeLine{125         \}}
+\DoxyCodeLine{126     \}}
+\DoxyCodeLine{127 }
+\DoxyCodeLine{128     \textcolor{keywordflow}{for} (j = 0; j < 4; j++)}
+\DoxyCodeLine{129     \{}
+\DoxyCodeLine{130         \textcolor{keywordflow}{for} (k = j + 1; k < 4; k++)}
+\DoxyCodeLine{131         \{}
+\DoxyCodeLine{132             \textcolor{keywordflow}{if} (clientes\_verificados[j] < clientes\_verificados[k]) \textcolor{comment}{//**< Ordena os clientes por ordem decrescente */}}
+\DoxyCodeLine{133             \{}
+\DoxyCodeLine{134                 temp = clientes\_verificados[j];}
+\DoxyCodeLine{135                 clientes\_verificados[j] = clientes\_verificados[k];}
+\DoxyCodeLine{136                 clientes\_verificados[k] = temp;}
+\DoxyCodeLine{137 }
+\DoxyCodeLine{138                 \textcolor{keywordtype}{char} temp\_nome[50];}
+\DoxyCodeLine{139                 strcpy(temp\_nome, nomes\_ordenados[j]);}
+\DoxyCodeLine{140                 strcpy(nomes\_ordenados[j], nomes\_ordenados[k]);}
+\DoxyCodeLine{141                 strcpy(nomes\_ordenados[k], temp\_nome);}
+\DoxyCodeLine{142             \}}
+\DoxyCodeLine{143         \}}
+\DoxyCodeLine{144     \}}
+\DoxyCodeLine{145 }
+\DoxyCodeLine{146     \textcolor{comment}{// Imprimir os clientes ordenados}}
+\DoxyCodeLine{147     printf(\textcolor{stringliteral}{"\(\backslash\)nListagem dos pacientes ordenada por ordem decrescente:\(\backslash\)n\(\backslash\)n"});}
+\DoxyCodeLine{148     \textcolor{keywordflow}{for} (j = 0; j < 4; j++)}
+\DoxyCodeLine{149     \{}
+\DoxyCodeLine{150         \textcolor{keywordflow}{if} (clientes\_verificados[j] != 0)}
+\DoxyCodeLine{151         \{}
+\DoxyCodeLine{152             printf(\textcolor{stringliteral}{"\(\backslash\)t\%04d \%s\(\backslash\)n"}, clientes\_verificados[j], nomes\_ordenados[j]); \textcolor{comment}{//**< Apresenta os clientes ordenados */}}
+\DoxyCodeLine{153         \}}
+\DoxyCodeLine{154     \}}
+\DoxyCodeLine{155 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{main_8c_a0ddf1224851353fc92bfbff6f499fa97}} 
+\index{main.c@{main.c}!main@{main}}
+\index{main@{main}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Função principal do programa. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Número de argumentos de linha de comando. \\
+\hline
+{\em argv} & Array de strings contendo os argumentos de linha de comando. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{164 \{}
+\DoxyCodeLine{165     \textcolor{keywordtype}{int} modo;}
+\DoxyCodeLine{166     \textcolor{keywordtype}{int} diainicio = 0, diafim = 0; \textcolor{comment}{//**< Armazena dias */}}
+\DoxyCodeLine{167     \textcolor{keywordtype}{int} mesinicio = 0, mesfim = 0; \textcolor{comment}{//**< Armazena meses */}}
+\DoxyCodeLine{168 }
+\DoxyCodeLine{169     \textcolor{keywordflow}{if} (argc < 2) \textcolor{comment}{//**< Verifica se o numero de argumentos */}}
+\DoxyCodeLine{170     \{}
+\DoxyCodeLine{171         printf(\textcolor{stringliteral}{"Caso necessite de ajuda: \%s -\/ajuda\(\backslash\)n"}, argv[0]); \textcolor{comment}{//**< Apresenta a mensagem como usar modo -\/ajuda */}}
+\DoxyCodeLine{172         \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{173     \}}
+\DoxyCodeLine{174 }
+\DoxyCodeLine{175     \textcolor{keywordflow}{if} (strcmp(argv[1], \textcolor{stringliteral}{"-\/csv"}) == 0) \textcolor{comment}{//**< Verifica se o argumento é -\/csv */}}
+\DoxyCodeLine{176         modo = 1;}
+\DoxyCodeLine{177     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(argv[1], \textcolor{stringliteral}{"-\/tsv"}) == 0) \textcolor{comment}{//**< Verifica se o argumento é -\/tsv */}}
+\DoxyCodeLine{178         modo = 2;}
+\DoxyCodeLine{179     \textcolor{keywordflow}{else} \textcolor{keywordflow}{if} (strcmp(argv[1], \textcolor{stringliteral}{"-\/ajuda"}) == 0) \textcolor{comment}{//**< Verifica se o argumento é -\/ajuda */}}
+\DoxyCodeLine{180         modo = 3;}
+\DoxyCodeLine{181     \textcolor{keywordflow}{else} \textcolor{comment}{//**< Outros casos */}}
+\DoxyCodeLine{182     \{}
+\DoxyCodeLine{183         printf(\textcolor{stringliteral}{"Caso necessite de ajuda: \%s -\/ajuda\(\backslash\)n"}, argv[0]);}
+\DoxyCodeLine{184         \textcolor{keywordflow}{return} 1;}
+\DoxyCodeLine{185     \}}
+\DoxyCodeLine{186 }
+\DoxyCodeLine{187     \mbox{\hyperlink{structDados}{Dados}} dados; \textcolor{comment}{//**< Invocação da struct dados */}}
+\DoxyCodeLine{188     \mbox{\hyperlink{structDieta}{Dieta}} dieta; \textcolor{comment}{//**< Invocação da struct dieta */}}
+\DoxyCodeLine{189     \mbox{\hyperlink{structPlano}{Plano}} plano; \textcolor{comment}{//**< Invocação da struct plano */}}
+\DoxyCodeLine{190 }
+\DoxyCodeLine{191     \textcolor{keywordflow}{switch} (modo)}
+\DoxyCodeLine{192     \{}
+\DoxyCodeLine{193     \textcolor{keywordflow}{case} 1: \textcolor{comment}{//**< Caso o argumento seja -\/csv */}}
+\DoxyCodeLine{194 }
+\DoxyCodeLine{195         \mbox{\hyperlink{csv_8c_ad5dc29193f2655b09ed92612ae4697a5}{ficheiro\_csv\_1}}(argv[2], \&dados);                                        \textcolor{comment}{//**< Invoca a função ficheiro\_csv\_1*/}}
+\DoxyCodeLine{196         \mbox{\hyperlink{csv_8c_aceae60365677569ae19c9f4f93fab5b6}{ficheiro\_csv\_2}}(argv[3], \&dieta);                                        \textcolor{comment}{//**< Invoca a função ficheiro\_csv\_2*/}}
+\DoxyCodeLine{197         \mbox{\hyperlink{csv_8c_a03d805687bec721e5c64e3e66f49c5c4}{ficheiro\_csv\_3}}(argv[4], \&plano);                                        \textcolor{comment}{//**< Invoca a função ficheiro\_csv\_3*/}}
+\DoxyCodeLine{198         \mbox{\hyperlink{main_8c_a91c8a8461e7eb671b50770908c96c53b}{periodo}}(\&diainicio, \&diafim, \&mesinicio, \&mesfim);                      \textcolor{comment}{//**< Invoca a função periodo*/}}
+\DoxyCodeLine{199         \mbox{\hyperlink{main_8c_af24b77aa2d9a4da6aea029eee9c1243d}{contador\_calorias}}(\&dieta, diainicio, mesinicio, diafim, mesfim);        \textcolor{comment}{//**< Invoca a função */}}
+\DoxyCodeLine{200         \mbox{\hyperlink{main_8c_ab2754a70c1dfaf02ae5edd59a9ed3756}{listagem}}(\&dieta, \&plano, \&dados, diainicio, mesinicio, diafim, mesfim); \textcolor{comment}{//**< Invoca a função contador\_calorias*/}}
+\DoxyCodeLine{201         \mbox{\hyperlink{csv_8c_a47d3fd3983d3bb6358a0e5c20596e75c}{listar\_plano\_csv}}(\&plano, diainicio, mesinicio, diafim, mesfim);         \textcolor{comment}{//**< Invoca a função listar\_plano\_csv */}}
+\DoxyCodeLine{202         \mbox{\hyperlink{csv_8c_afdca1755160512ee1ca1289f974c1ff7}{calcmedia\_csv}}(\&dados, \&dieta, diainicio, diafim, mesinicio, mesfim);    \textcolor{comment}{//**< Invoca a função calcmedia\_csv*/}}
+\DoxyCodeLine{203         \mbox{\hyperlink{csv_8c_aea80dd7671d5e24cc26c111d52e97bce}{tabela\_csv}}(\&dados, \&dieta, \&plano);                                     \textcolor{comment}{//**< Invoca a função tabela\_csv*/}}
+\DoxyCodeLine{204 }
+\DoxyCodeLine{205         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{206 }
+\DoxyCodeLine{207     \textcolor{keywordflow}{case} 2: \textcolor{comment}{//**< Caso o argumento seja -\/tsv */}}
+\DoxyCodeLine{208 }
+\DoxyCodeLine{209         \mbox{\hyperlink{tsv_8c_a55bd1f0872ab6818355d2ccdf4df5e05}{ficheiro\_tsv\_1}}(argv[2], \&dados);                                        \textcolor{comment}{//**< Invoca a função ficheiro\_tsv\_1*/}}
+\DoxyCodeLine{210         \mbox{\hyperlink{tsv_8c_a851dfba5fdb5a881c0fc6733f9bc4ed3}{ficheiro\_tsv\_2}}(argv[3], \&dieta);                                        \textcolor{comment}{//**< Invoca a função ficheiro\_tsv\_2 */}}
+\DoxyCodeLine{211         \mbox{\hyperlink{tsv_8c_a59d620ebbc0688f96c7aa4343ddaf767}{ficheiro\_tsv\_3}}(argv[4], \&plano);                                        \textcolor{comment}{//**< Invoca a função ficheiro\_tsv\_3 */}}
+\DoxyCodeLine{212         \mbox{\hyperlink{main_8c_a91c8a8461e7eb671b50770908c96c53b}{periodo}}(\&diainicio, \&diafim, \&mesinicio, \&mesfim);                      \textcolor{comment}{//**< Invoca a função periodo*/}}
+\DoxyCodeLine{213         \mbox{\hyperlink{main_8c_af24b77aa2d9a4da6aea029eee9c1243d}{contador\_calorias}}(\&dieta, diainicio, mesinicio, diafim, mesfim);        \textcolor{comment}{//**< Invoca a função contador\_calorias*/}}
+\DoxyCodeLine{214         \mbox{\hyperlink{main_8c_ab2754a70c1dfaf02ae5edd59a9ed3756}{listagem}}(\&dieta, \&plano, \&dados, diainicio, mesinicio, diafim, mesfim); \textcolor{comment}{//**< Invoca a função */}}
+\DoxyCodeLine{215         \mbox{\hyperlink{tsv_8c_a527d0a237ca41559e52648b3c47e7f8f}{listar\_plano\_tsv}}(\&plano, diainicio, mesinicio, diafim, mesfim);         \textcolor{comment}{//**< Invoca a função listagem*/}}
+\DoxyCodeLine{216         \mbox{\hyperlink{tsv_8c_a1d9b4269f3a67b18307f05bed94dd2fd}{calcmedia\_tsv}}(\&dados, \&dieta, diainicio, diafim, mesinicio, mesfim);    \textcolor{comment}{//**< Invoca a função calcmedia\_tsv*/}}
+\DoxyCodeLine{217         \mbox{\hyperlink{tsv_8c_a0b50c489e21037ad51ee9cd4c9610246}{tabela\_tsv}}(\&dados, \&dieta, \&plano);                                     \textcolor{comment}{//**< Invoca a função tabela\_tsv*/}}
+\DoxyCodeLine{218 }
+\DoxyCodeLine{219         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{220 }
+\DoxyCodeLine{221     \textcolor{keywordflow}{case} 3: \textcolor{comment}{//**< Caso o argumento seja -\/ajuda */}}
+\DoxyCodeLine{222 }
+\DoxyCodeLine{223         printf(\textcolor{stringliteral}{"\(\backslash\)nEste programa utiliza os seguintes formatos (CSV ou TSV). Existindo tambem uma versão binária de cada ficheiro \(\backslash\)n"});}
+\DoxyCodeLine{224         printf(\textcolor{stringliteral}{"\(\backslash\)nModo de utilização:\(\backslash\)n"});}
+\DoxyCodeLine{225         printf(\textcolor{stringliteral}{"\(\backslash\)tPara utilizar com arquivos CSV, execute: \%s -\/csv dados.csv dietas.csv planos.csv\(\backslash\)n"}, argv[0]);}
+\DoxyCodeLine{226         printf(\textcolor{stringliteral}{"\(\backslash\)tPara utilizar com arquivos TSV, execute: \%s -\/tsv dados.tsv dietas.tsv planos.tsv\(\backslash\)n"}, argv[0]);}
+\DoxyCodeLine{227         printf(\textcolor{stringliteral}{"\(\backslash\)tPara utilizar com arquivos (CSV|bin), execute: \%s -\/csv dados.csv dietas\_csv.bin planos.csv\(\backslash\)n"}, argv[0]);}
+\DoxyCodeLine{228         printf(\textcolor{stringliteral}{"\(\backslash\)tPara utilizar com arquivos (TSV|bin), execute: \%s -\/tsv dados.tsv dietas\_tsv.bin planos\_tsv.bin\(\backslash\)n"}, argv[0]);}
+\DoxyCodeLine{229         \textcolor{keywordflow}{break};}
+\DoxyCodeLine{230 }
+\DoxyCodeLine{231         \textcolor{keywordflow}{return} 0;}
+\DoxyCodeLine{232     \}}
+\DoxyCodeLine{233 \}}
+
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a91c8a8461e7eb671b50770908c96c53b}\label{main_8c_a91c8a8461e7eb671b50770908c96c53b}} 
+\index{main.c@{main.c}!periodo@{periodo}}
+\index{periodo@{periodo}!main.c@{main.c}}
+\doxysubsubsection{\texorpdfstring{periodo()}{periodo()}}
+{\footnotesize\ttfamily void periodo (\begin{DoxyParamCaption}\item[{int $\ast$}]{diainicio,  }\item[{int $\ast$}]{mesinicio,  }\item[{int $\ast$}]{diafim,  }\item[{int $\ast$}]{mesfim }\end{DoxyParamCaption})}
+
+
+
+Define um período especificado pelos usuários. 
+
+Esta função solicita ao usuário que insira datas de início e fim (no formato dd-\/mm) e verifica se as datas estão dentro de intervalos válidos (dia\+: 1-\/31, mês\+: 1-\/12). A função continua a solicitar entradas até que datas válidas sejam fornecidas.
+
+
+\begin{DoxyParams}{Parameters}
+{\em diainicio} & Armazena o dia de início defenido. \\
+\hline
+{\em mesinicio} & Armazena o mes de início defenido. \\
+\hline
+{\em diafim} & Armazena o dia de fim defenido. \\
+\hline
+{\em mesfim} & Armazena o mes de fim defenido. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{30 \{}
+\DoxyCodeLine{31     printf(\textcolor{stringliteral}{"\(\backslash\)nDefinir periodo (dd-\/mm): \(\backslash\)n"});}
+\DoxyCodeLine{32     \textcolor{keywordflow}{while} (*diainicio > 31 || *diainicio < 1 || *mesinicio > 12 || *mesinicio < 1) \textcolor{comment}{//**< Condições necessárias  */}}
+\DoxyCodeLine{33     \{}
+\DoxyCodeLine{34         printf(\textcolor{stringliteral}{"\(\backslash\)n\(\backslash\)tData de inicio: "});}
+\DoxyCodeLine{35         scanf(\textcolor{stringliteral}{"\%d-\/\%d"}, diainicio, mesinicio); \textcolor{comment}{//**< Leitura das datas de inicio  */}}
+\DoxyCodeLine{36     \}}
+\DoxyCodeLine{37 }
+\DoxyCodeLine{38     \textcolor{keywordflow}{while} (*diafim > 31 || *diafim < 1 || *mesfim > 12 || *mesfim < 1) \textcolor{comment}{//**< Condições necessárias  */}}
+\DoxyCodeLine{39     \{}
+\DoxyCodeLine{40         printf(\textcolor{stringliteral}{"\(\backslash\)tData de fim: "});}
+\DoxyCodeLine{41         scanf(\textcolor{stringliteral}{"\%d-\/\%d"}, diafim, mesfim); \textcolor{comment}{//**< Leitura das datas de fim  */}}
+\DoxyCodeLine{42     \}}
+\DoxyCodeLine{43 \}}
+
+\end{DoxyCode}

@@ -1,0 +1,14 @@
+\BOOKMARK [0][-]{chapter.1}{Introdu\347\343o}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Objetivo }{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{CSV|TSV }{chapter.1}% 3
+\BOOKMARK [0][-]{chapter.2}{Estrutura do projeto}{}% 4
+\BOOKMARK [1][-]{subsection.2.0.1}{d30/src/main.c}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.0.2}{d30/src/struct.h}{subsection.2.0.1}% 6
+\BOOKMARK [2][-]{subsection.2.0.3}{d30/src/tsv.h}{subsection.2.0.1}% 7
+\BOOKMARK [2][-]{subsection.2.0.4}{d30/src/tsv.c}{subsection.2.0.1}% 8
+\BOOKMARK [2][-]{subsection.2.0.5}{d30/src/planostsv.bin}{subsection.2.0.1}% 9
+\BOOKMARK [2][-]{subsection.2.0.6}{d30/src/Makefile}{subsection.2.0.1}% 10
+\BOOKMARK [0][-]{chapter.3}{Decis\365es Coletivas}{}% 11
+\BOOKMARK [1][-]{section.3.1}{Estrat\351gia de Desenvolvimento}{chapter.3}% 12
+\BOOKMARK [0][-]{chapter.4}{Comando com Sintaxe de Utiliza\347\343o}{}% 13
+\BOOKMARK [0][-]{chapter.5}{Conclus\343o}{}% 14
